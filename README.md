@@ -28,7 +28,7 @@ The input spectrogram is _standardized_ using the global mean and standard devia
 
 ### Dimensionality reduction
 
-The LSTM is not operating on the original input spectrogram resolution. Instead, in the first step after the normalization, the network learns to compresses the frequency and channel axis of the model to reduce redundancy and make the model converge faster.
+The LSTM is not operating on the original input spectrogram resolution. Instead, in the first step after the normalization, the network learns to compress the frequency and channel axes of the model to reduce redundancy and make the model converge faster.
 
 ### Bidirectional-LSTM
 
