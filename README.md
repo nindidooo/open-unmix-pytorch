@@ -32,16 +32,16 @@ The LSTM is not operating on the original input spectrogram resolution. Instead,
 
 ### Bidirectional-LSTM
 
-The core of __open-unmix__ is a three layer bidirectional [LSTM network](https://dl.acm.org/citation.cfm?id=1246450). Due to its recurrent nature, the model can be trained and evaluated on arbitrary length of audio signals. Since the model takes information from past and future simultaneously, the model cannot be used in an online/real-time manner.
-An uni-directional model can easily be trained as described [here](docs/training.md).
+The core of __open-unmix__ is a three layer bidirectional [LSTM network](https://dl.acm.org/citation.cfm?id=1246450). Due to its recurrent nature, the model can be trained and evaluated on audio signals of arbitrary length. Since the model takes information from past and future simultaneously, the model cannot be used in an online/real-time manner.
+A uni-directional model can be trained easily, as described [here](docs/training.md).
 
 ### Output Stage
 
-After applying the LSTM, the signal is decoded back to its original input dimensionality. In the last steps the output is multiplied with the input magnitude spectrogram, so that the models is asked to learn a mask.
+After applying the LSTM, the signal is decoded back to its original input dimensionality. In the last steps, the output is multiplied with the input magnitude spectrogram, so that the models is asked to learn a mask.
 
 ## Separation
 
-Since PyTorch currently lacks an invertible STFT, the synthesis is performed in numpy. For inference, we rely on [an implementation](https://github.com/sigsep/norbert) of a multichannel Wiener filter that is a very popular way of filtering multichannel audio for several applications, notably speech enhancement and source separation. The `norbert` module assumes to have some way of estimating power-spectrograms for all the audio sources (non-negative) composing a mixture.
+Since PyTorch currently lacks an invertible STFT, the synthesis is performed using numpy. For inference, we rely on [an implementation](https://github.com/sigsep/norbert) of a multichannel Wiener filter that is a very popular way of filtering multichannel audio for several applications, notably speech enhancement and source separation. The `norbert` module assumes to have some way of estimating power-spectrograms for all the audio sources (non-negative) composing a mixture.
 
 ## Getting started
 
